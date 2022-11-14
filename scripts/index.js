@@ -24,7 +24,7 @@
    profileTitle.textContent = nameInput.value;
    profileSubtitle.textContent = jobInput.value;
 
-   popUp.classList.remove('popup_opened');
+   popupClose();
  }
 
  openPopup.addEventListener('click', popupOpen);

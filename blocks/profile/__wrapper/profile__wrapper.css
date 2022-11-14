@@ -1,9 +1,9 @@
 .profile__wrapper {
+  max-width: 336px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 18px;
-  padding-bottom: 16px;
 }
 
 @media screen and (max-width: 730px){
@@ -15,5 +15,7 @@
 @media screen and (max-width: 568px){
   .profile__wrapper {
     gap: 10px;
+    padding-left: 28px;
+    padding-bottom: 0;
   }
 }

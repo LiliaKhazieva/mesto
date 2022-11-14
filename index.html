@@ -7,93 +7,83 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
 </head>
-  <body>
-    <div class="page">
-      <div class="page__container">
-        <div class="page__header">
-          <header class="header">
-            <a href="#" class="header__link"><img class="header__logo" src="./images/Vector.svg" alt="Логотип"></a>
-          </header>
-        </div>
-        <main class="content page__content">
-        <section class="profile">
-          <div class="profile__item">
-            <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
-            <div class="profile__info">
-              <div class="profile__wrapper">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button type="submit" class="profile__edit-button"></button>
-              </div>
-              <p class="profile__subtitle">Исследователь океана</p>
-            </div>
+  <body class="page page__container">
+    <header class="header">
+        <a href="#" class="header__link"><img class="header__logo" src="./images/Vector.svg" alt="Логотип"></a>
+      </header>
+    <main class="content page__content">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
+        <div class="profile__info">
+          <div class="profile__wrapper">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"></button>
           </div>
-          <button class="profile__add-button"></button>
-        </section>
-        <section class="elements">
-          <ul class="elements__list">
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
             <li class="elements__item">
               <img src="./images/karachaevo.jpg" alt="Карачаевск" class="elements__image">
               <div class="elements__wrapper">
-                <h3 class="elements__title">Карачаевск</h3>
-                <button class="elements__button"></button>
+                <h2 class="elements__title">Карачаевск</h2>
+                <button type="button" class="elements__button"></button>
               </div>
             </li>
             <li class="elements__item">
               <img src="./images/elbrus.jpg" alt="Эльбрус" class="elements__image">
               <div class="elements__wrapper">
-                <h3 class="elements__title">Гора Эльбрус</h3>
-                <button class="elements__button"></button>
+                <h2 class="elements__title">Гора Эльбрус</h2>
+                <button type="button" class="elements__button"></button>
               </div>
             </li>
             <li class="elements__item">
               <img src="./images/dombau.jpg" alt="Домбай" class="elements__image">
               <div class="elements__wrapper">
-                <h3 class="elements__title">Домбай</h3>
-                <button class="elements__button"></button>
+                <h2 class="elements__title">Домбай</h2>
+                <button type="button" class="elements__button"></button>
               </div>
             </li>
             <li class="elements__item">
               <img src="./images/elbrus.jpg" alt="Эльбрус" class="elements__image">
               <div class="elements__wrapper">
-                <h3 class="elements__title">Гора Эльбрус</h3>
-                <button class="elements__button"></button>
+                <h2 class="elements__title">Гора Эльбрус</h2>
+                <button type="button" class="elements__button"></button>
               </div>
             </li>
             <li class="elements__item">
               <img src="./images/dombau.jpg" alt="Домбай" class="elements__image">
               <div class="elements__wrapper">
-                <h3 class="elements__title">Домбай</h3>
-                <button class="elements__button"></button>
+                <h2 class="elements__title">Домбай</h2>
+                <button type="button" class="elements__button"></button>
               </div>
             </li>
             <li class="elements__item">
               <img src="./images/karachaevo.jpg" alt="Карачаево-Черкессия" class="elements__image">
               <div class="elements__wrapper">
-                <h3 class="elements__title">Карачаево-Черкессия</h3>
-                <button class="elements__button"></button>
+                <h2 class="elements__title">Карачаево-Черкессия</h2>
+                <button type="button" class="elements__button"></button>
               </div>
             </li>
           </ul>
-        </section>
-      </main>
-        <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
-      </footer>
-        <div class="popup">
-        <div class="popup__container">
-          <div class="popup__body">
-            <p class="popup__title">Редактировать профиль</p>
-            <form action="#" method="post" class="popup__form">
-              <input type="text" name="name" placeholder="Введите имя" class="popup__input input-name" value="Жак-Ив Кусто">
-              <input type="text" name="job" placeholder="Введите описание" class="popup__input input-job" value="Исследователь океана">
-              <button type="submit" class="popup__form-button">Сохранить</button>
-            </form>
-            <button class="popup__close-button"></button>
-          </div>
-        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form action="#" method="post" class="popup__form" name="myForm">
+          <input type="text" name="name" placeholder="Введите имя" class="popup__input popup__input_type_name" value="">
+          <input type="text" name="job" placeholder="Введите описание" class="popup__input popup__input_type_info" value="">
+          <button type="submit" class="popup__form-button">Сохранить</button>
+        </form>
       </div>
-      </div>
-      </div>
+    </div>
     <script src="scripts/index.js"></script>
   </body>
 </html>

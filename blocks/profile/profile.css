@@ -1,13 +1,18 @@
 .profile {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+
 }
 
 @media screen and (max-width: 730px){
   .profile {
     flex-direction: column;
     gap: 36px;
+  }
+}
+
+@media screen and (max-width: 568px){
+  .profile {
+    gap: 0;
   }
 }

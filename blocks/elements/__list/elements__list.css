@@ -1,5 +1,5 @@
 .elements__list {
-  padding: 45.25px 0 0;
+  padding: 49.25px 0 0;
   list-style: none;
   margin: 0;
   display: grid;
@@ -11,6 +11,6 @@
 
 @media screen and (max-width: 568px){
   .elements__list {
-    padding: 36px 0 0;
+    padding: 33px 0 0;
   }
 }

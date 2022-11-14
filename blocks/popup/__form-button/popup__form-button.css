@@ -3,8 +3,8 @@
   display: block;
   background-color: #000000;
   color: #ffffff;
-  padding: 14px 0 18px 0;
-  margin: 48px auto 0 auto;
+  padding: 15px 0 16px 0;
+  margin: 45px auto 0 auto;
   border-radius: 2px;
   cursor: pointer;
   font-weight: 400;
@@ -14,10 +14,14 @@
   border: none;
 }
 
+.popup__form-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 @media screen and (max-width: 568px){
   .popup__form-button {
     max-width: 238px;
-    margin: 48px auto 0 auto;
+    margin: 45px auto 0 auto;
     padding: 14px 0 14px 0;
     font-size: 14px;
     line-height: 17px;

@@ -1,9 +1,9 @@
 .header {
   box-sizing: border-box;
   max-width: 880px;
+  padding: 0 0 38px;
   width: 100%;
   margin: 0 auto;
-  padding-bottom: 41px;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -11,7 +11,7 @@
 
 @media screen and (max-width: 568px){
   .header {
-    padding: 0 27px 31px;
+    padding: 0 0 31px;
   }
 }
 

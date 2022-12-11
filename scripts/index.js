@@ -9,12 +9,20 @@ const openProfileAddButton = document.querySelector('.profile__add-button');
 const closePopupEditButton = document.querySelector('.popup__close_edit-profile');
 const closePopupAddButton = document.querySelector('.popup__close_add-item');
 const closePopupImageButton = document.querySelector('.popup__close_big-image');
+// открытый попап
+let openedPopup;
 
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
+  openedPopup = popup;
+  document.addEventListener('keydown', popupEscapeHandler)
+  document.addEventListener('click', popupClickHandler);
 }
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
+  openedPopup = null;
+  document.removeEventListener('keydown', popupEscapeHandler);
+  document.removeEventListener('click', popupClickHandler);
 }
 const likeButtonHandler = function (evt){
   evt.target.classList.toggle('elements__like-button_active');
@@ -110,3 +118,15 @@ const renderCard = (data) => {
 initialCards.forEach(card => {
   renderCard(card, elementsList);
 });
+
+function popupEscapeHandler(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(openedPopup);
+  }
+}
+
+function popupClickHandler(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
+}

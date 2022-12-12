@@ -13,10 +13,6 @@ const buttonClosePopupImage = document.querySelector('.popup__close_big-image');
 let openedPopup;
 
 const openPopup = function (popup) {
-  const submitButton = popup.querySelector(validationSettings.submitButtonSelector);
-  if (submitButton) {
-    disableSubmitButton(submitButton);
-  }
   popup.classList.add('popup_opened');
   openedPopup = popup;
   document.addEventListener('keydown', handlePopupEscape)
@@ -44,6 +40,8 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 buttonOpenPopupProfile.addEventListener('click', function () {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
+  const submitButton = popUpEditProfile.querySelector(validationSettings.submitButtonSelector);
+  disableSubmitButton(submitButton);
   openPopup(popUpEditProfile);
 });
 buttonClosePopupProfile.addEventListener('click', function () {
@@ -60,6 +58,8 @@ formElementEdit.addEventListener('submit', submitFormProfileHandler);
 
 // попап добавления изображения
 buttonOpenPopupAdd.addEventListener('click', function () {
+  const submitButton = popUpAddItem.querySelector(validationSettings.submitButtonSelector);
+  disableSubmitButton(submitButton);
   openPopup(popUpAddItem);
 });
 buttonClosePopupAdd.addEventListener('click', function () {

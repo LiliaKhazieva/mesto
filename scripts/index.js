@@ -13,16 +13,20 @@ const buttonClosePopupImage = document.querySelector('.popup__close_big-image');
 let openedPopup;
 
 const openPopup = function (popup) {
+  const submitButton = popup.querySelector(validationSettings.submitButtonSelector);
+  if (submitButton) {
+    disableSubmitButton(submitButton);
+  }
   popup.classList.add('popup_opened');
   openedPopup = popup;
-  document.addEventListener('keydown', popupEscapeHandler)
-  document.addEventListener('click', popupClickHandler);
+  document.addEventListener('keydown', handlePopupEscape)
+  document.addEventListener('click', handlePopupClick);
 }
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
   openedPopup = null;
-  document.removeEventListener('keydown', popupEscapeHandler);
-  document.removeEventListener('click', popupClickHandler);
+  document.removeEventListener('keydown', handlePopupEscape);
+  document.removeEventListener('click', handlePopupClick);
 }
 const likeButtonHandler = function (evt){
   evt.target.classList.toggle('elements__like-button_active');
@@ -119,13 +123,13 @@ initialCards.forEach(card => {
   renderCard(card, elementsList);
 });
 
-function popupEscapeHandler(evt) {
+function handlePopupEscape(evt) {
   if (evt.key === 'Escape') {
     closePopup(openedPopup);
   }
 }
 
-function popupClickHandler(evt) {
+function handlePopupClick(evt) {
   if (evt.target.classList.contains('popup')) {
     closePopup(evt.target);
   }

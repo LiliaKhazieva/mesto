@@ -2,23 +2,17 @@ import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
 import { initialCards } from './cards.js';
 import { openPopup, closePopup } from './popup.js';
+import { validationSettings } from './constants.js';
 
-const validationSettings = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__form-button',
-  inactiveButtonClass: 'popup__form-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
-
-const forms = document.querySelectorAll(validationSettings.formSelector);
+const forms = document.querySelectorAll('.popup__form');
 const bigImagePopup = document.querySelector('.popup__image');
 const titleImagePopup = document.querySelector('.popup__title-image')
+const validators = {};
 
 forms.forEach(form => {
   const formValidator = new FormValidator(validationSettings, form);
   formValidator.enableValidation();
+  validators[form.getAttribute('name')] = formValidator;
 });
 
 function onCardImageClick(cardData) {
@@ -50,8 +44,7 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 buttonOpenPopupProfile.addEventListener('click', function () {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  const submitButton = popUpEditProfile.querySelector(validationSettings.submitButtonSelector);
-  FormValidator.disableSubmitButton(submitButton, validationSettings.inactiveButtonClass);
+  validators.editForm.disableSubmitButton();
   openPopup(popUpEditProfile);
 });
 buttonClosePopupProfile.addEventListener('click', function () {
@@ -68,8 +61,7 @@ formElementEdit.addEventListener('submit', submitFormProfileHandler);
 
 // попап добавления изображения
 buttonOpenPopupAdd.addEventListener('click', function () {
-  const submitButton = popUpAddItem.querySelector(validationSettings.submitButtonSelector);
-  FormValidator.disableSubmitButton(submitButton, validationSettings.inactiveButtonClass);
+  validators.createForm.disableSubmitButton();
   openPopup(popUpAddItem);
 });
 buttonClosePopupAdd.addEventListener('click', function () {

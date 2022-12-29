@@ -1,7 +1,6 @@
 export class Card {
   constructor(cardData, templateSelector, onCardImageClick) {
     this._name = cardData.name;
-    this._alt = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
     this._onCardImageClick = onCardImageClick;
@@ -14,8 +13,16 @@ export class Card {
         link: this._link,
       })
     });
-    this._element.querySelector('.elements__like-button').addEventListener('click', this._likeButtonHandler);
-    this._element.querySelector('.elements__delete-button').addEventListener('click', this._deleteElementsHandler);
+    this._likeButton.addEventListener('click', (evt) => {
+      // не пробрасываем дальше, чтобы не вызвался onCardImageClick
+      evt.stopPropagation();
+      this._likeButtonHandler();
+    });
+    this._removeButton.addEventListener('click', (evt) => {
+      // не пробрасываем дальше, чтобы не вызвался onCardImageClick
+      evt.stopPropagation();
+      this._deleteElementsHandler();
+    });
   }
 
   _getTemplate() {
@@ -28,20 +35,22 @@ export class Card {
 
   createCard() {
     this._element = this._getTemplate();
+    this._likeButton = this._element.querySelector('.elements__like-button');
+    this._removeButton = this._element.querySelector('.elements__delete-button');
+    this._image = this._element.querySelector('.elements__image');
+    this._title = this._element.querySelector('.elements__title');
     this._setEventListeners();
-    this._element.querySelector('.elements__title').textContent = this._name;
-    const cardImage = this._element.querySelector('.elements__image');
-    cardImage.src = this._link;
-    cardImage.alt = this._alt;
+    this._title.textContent = this._name;
+    this._image.src = this._link;
+    this._image.alt = this._name;
     return this._element;
   }
 
-  _likeButtonHandler(evt) {
-    evt.stopPropagation()
-    evt.target.classList.toggle('elements__like-button_active');
+  _likeButtonHandler() {
+    this._likeButton.classList.toggle('elements__like-button_active');
   }
-  _deleteElementsHandler(evt) {
-    evt.stopPropagation()
-    evt.target.closest('.elements__item').remove();
+
+  _deleteElementsHandler() {
+    this._element.remove();
   }
 }

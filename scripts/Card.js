@@ -1,14 +1,15 @@
-export class Card {
-  constructor(cardData, templateSelector, onCardImageClick) {
+import Popup  from "./Popup.js";
+export default class Card {
+  constructor({cardData, handleCardClick}, templateSelector) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
-    this._onCardImageClick = onCardImageClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _setEventListeners() {
     this._element.addEventListener('click', () => {
-      this._onCardImageClick({
+      this._handleCardClick({
         name: this._name,
         link: this._link,
       })

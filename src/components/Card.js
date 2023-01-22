@@ -1,6 +1,5 @@
-import Popup  from "./Popup.js";
 export default class Card {
-  constructor({cardData, handleCardClick}, templateSelector) {
+  constructor({ cardData, handleCardClick }, templateSelector) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
@@ -15,12 +14,12 @@ export default class Card {
       })
     });
     this._likeButton.addEventListener('click', (evt) => {
-      // не пробрасываем дальше, чтобы не вызвался onCardImageClick
+      // не пробрасываем дальше, чтобы не вызвался handleCardClick
       evt.stopPropagation();
       this._likeButtonHandler();
     });
     this._removeButton.addEventListener('click', (evt) => {
-      // не пробрасываем дальше, чтобы не вызвался onCardImageClick
+      // не пробрасываем дальше, чтобы не вызвался handleCardClick
       evt.stopPropagation();
       this._deleteElementsHandler();
     });

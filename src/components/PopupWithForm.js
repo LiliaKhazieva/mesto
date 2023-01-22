@@ -1,5 +1,5 @@
-import Popup from "./Popup.js";
-import { popupForm, popupInput } from "./constants.js";
+import Popup from './Popup';
+import { popupForm, popupInput } from './constants';
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, submitHandler) {
@@ -8,6 +8,7 @@ export class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
     this._input = this._form.querySelectorAll(popupInput);
   }
+
   _getInputValues() {
     this._values = {};
     this._input.forEach((input) => {
@@ -15,6 +16,7 @@ export class PopupWithForm extends Popup {
     });
     return this._values;
   }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (e) => {
@@ -22,8 +24,8 @@ export class PopupWithForm extends Popup {
       this._submitHandler(this._getInputValues());
     })
   }
+
   close() {
-    // console.log(this._form.values);
     super.close();
     this._form.reset();
   }

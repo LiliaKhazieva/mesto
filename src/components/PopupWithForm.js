@@ -2,10 +2,11 @@ import Popup from './Popup';
 import { popupForm, popupInput } from './constants';
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, submitHandler) {
+  constructor(popupSelector, submitHandler, openHandler) {
     super(popupSelector);
     this._form = this._popup.querySelector(popupForm);
     this._submitHandler = submitHandler;
+    this._openHandler = openHandler;
     this._input = this._form.querySelectorAll(popupInput);
   }
 
@@ -23,6 +24,11 @@ export class PopupWithForm extends Popup {
       e.preventDefault();
       this._submitHandler(this._getInputValues());
     })
+  }
+
+  open() {
+    super.open();
+    this._openHandler();
   }
 
   close() {

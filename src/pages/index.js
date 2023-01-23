@@ -1,5 +1,4 @@
 import {
-  validationSettings,
   elementsList,
   templateSelector,
   popUpBigImage,
@@ -14,7 +13,8 @@ import {
   popupForm,
 } from '../components/constants';
 
-import { initialCards } from '../components/cards';
+import { initialCards } from '../utils/cards.js';
+import { validationSettings } from '../utils/validations';
 import Section from '../components/Section';
 import { FormValidator } from '../components/FormValidator';
 import Card from '../components/Card';
@@ -30,18 +30,26 @@ forms.forEach(form => {
   formValidator.enableValidation();
   validators[form.getAttribute('name')] = formValidator;
 });
-validators.createForm.disableSubmitButton();
+
+// дизейблим кнопку создать когда открывается попап
+function openFormAddCard() {
+  validators.createForm.disableSubmitButton();
+}
 
 // создание карточки
-function submitFormAddCard(card) {
+function createCard(card) {
   const newCard = new Card({ cardData: card, handleCardClick }, templateSelector)
   const cardElement = newCard.createCard();
-  Cards.addItem(cardElement);
+  cardsList.addItem(cardElement);
+}
+
+function submitFormAddCard(card) {
+  createCard(card)
   popupAddItem.close();
 }
 
 // создание формы добавления карточки
-const popupAddItem = new PopupWithForm(popupAddItemSelector, submitFormAddCard);
+const popupAddItem = new PopupWithForm(popupAddItemSelector, submitFormAddCard, openFormAddCard);
 popupAddItem.setEventListeners();
 buttonOpenPopupAdd.addEventListener('click', () => popupAddItem.open());
 
@@ -58,7 +66,10 @@ function handlerSubmitFormProfile({name, job}) {
   userInfo.setUserInfo({name, job});
   popupProfileEdit.close();
 }
-const popupProfileEdit = new PopupWithForm(popUpEditProfile, handlerSubmitFormProfile);
+function openProfileEdit() {
+  validators.editForm.disableSubmitButton();
+}
+const popupProfileEdit = new PopupWithForm(popUpEditProfile, handlerSubmitFormProfile, openProfileEdit);
 popupProfileEdit.setEventListeners();
 
 buttonOpenPopupProfile.addEventListener('click', () => {
@@ -69,12 +80,10 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 });
 
 // вставка карточек
-const Cards = new Section({
+const cardsList = new Section({
   items: initialCards,
   renderer: (card) => {
-    const newCard = new Card({ cardData: card, handleCardClick }, templateSelector)
-    const cardElement = newCard.createCard();
-    Cards.addItem(cardElement);
+    createCard(card);
   }
 }, elementsList);
-Cards.renderItems();
+cardsList.renderItems();

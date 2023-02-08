@@ -12,7 +12,10 @@
     </header>
     <main class="content page__content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар">
+        <div class="profile__avatar-wrapper">
+          <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар">
+          <button class="profile__avatar-edit"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__wrapper">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -27,7 +30,7 @@
   </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
+      <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
     <div class="popup popup_edit-profile">
       <div class="popup__container">
@@ -70,13 +73,36 @@
         <p class="popup__title-image"></p>
       </div>
     </div>
+    <div class="popup popup_delete-card">
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close_delete-card"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="submit" class="popup__form-button popup__form-button_confirm">Да</button>
+      </div>
+    </div>
+    <div class="popup popup_avatar-edit">
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close_avatar_edit"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form action="#" method="post" class="popup__form popup__form-avatar" name="createAvatar">
+          <label class="popup__form-field">
+            <input type="url" name="link" id="src-input" placeholder="Ссылка на изображение" class="popup__input popup__input_type_link" value="" required>
+            <span class="popup__form-input-error src-input-error"></span>
+          </label>
+          <button type="submit" class="popup__form-button popup__form-button_create">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <li class="elements__item">
         <img src=" " alt="картинка" class="elements__image">
         <button type="button" class="elements__delete-button"></button>
         <div class="elements__wrapper">
           <h2 class="elements__title"></h2>
-          <button type="button" class="elements__like-button"></button>
+            <div class="elements__wrapper-like">
+              <button type="button" class="elements__like-button"></button>
+              <span class="elements__count"></span>
+            </div>
         </div>
       </li>
     </template>

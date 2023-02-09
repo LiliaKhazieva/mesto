@@ -1,5 +1,5 @@
 import Popup from './Popup';
-import { popupConfirmationConfirm } from './constants';
+import { popupConfirmationConfirm } from '../utils/constants';
 
 export class PopupWithConfirmation extends Popup{
   constructor(popupSelector, confirmHandle) {

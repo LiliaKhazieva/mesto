@@ -15,9 +15,9 @@ export default class UserInfo {
   }
 
   setUserInfo({ id, name, job, link }) {
-    this._id = id;
-    this._name.textContent = name;
-    this._info.textContent = job;
-    this._avatar.src = link;
+    if (id) {this._id = id}
+    if (name) {this._name.textContent = name}
+    if (job) {this._info.textContent = job}
+    if (link) {this._avatar.src = link}
   }
 }

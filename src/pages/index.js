@@ -5,18 +5,17 @@ import {
   popupAddItemSelector,
   buttonOpenPopupAdd,
   popUpEditProfile,
+  buttonOpenPopupProfile,
   nameInput,
   profileTitle,
   profileSubtitle,
-  buttonOpenPopupProfile,
   jobInput,
   popupForm,
   popUpDeleteCard,
   popUpAvatarEdit,
   buttonOpenPopupAvatarEdit,
   profileAvatar,
-} from '../components/constants';
-
+} from '../utils/constants';
 import { validationSettings } from '../utils/validations';
 import Section from '../components/Section';
 import { FormValidator } from '../components/FormValidator';
@@ -40,20 +39,16 @@ const api = new Api({
   }
 });
 
-api.getUserInfo()
-  .then(info => {
-    userInfo.setUserInfo({
-      id: info._id,
-      name: info.name,
-      link: info.avatar,
-      job: info.about,
-    })
-  })
-
 let cardsList;
 
-api.getInitialCards()
-  .then(cards => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo({
+      id: user._id,
+      name: user.name,
+      link: user.avatar,
+      job: user.about,
+    })
     cardsList = new Section({
       items: cards.reverse(),
       renderer: (card) => {
@@ -62,6 +57,9 @@ api.getInitialCards()
     }, elementsList);
     cardsList.renderItems();
   })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // валидация
 const validators = {};
@@ -101,11 +99,17 @@ function handleCardLike(id, isUserliked) {
       .then(card => {
         cards[id].setLikes(card.likes);
       })
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
     api.likeCard(id)
       .then(card => {
         cards[id].setLikes(card.likes);
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 
@@ -114,10 +118,13 @@ function submitFormAddCard(card) {
   api.addNewCard(card)
     .then(newCard => {
       createCard(newCard)
+      popupAddItem.close();
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
     popupAddItem.endLoading();
-    popupAddItem.close();
   })
 }
 
@@ -147,10 +154,13 @@ function handlerSubmitFormProfile({ name, job }) {
         job: info.about,
         link: info.avatar,
       });
+      popupProfileEdit.close();
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       popupProfileEdit.endLoading();
-      popupProfileEdit.close();
     })
 }
 function openProfileEdit() {
@@ -177,6 +187,9 @@ function deleteConfirmHandle({ id }) {
       cards[id].deleteCard();
       popupDeleteCard.setData({});
       popupDeleteCard.close();
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }
 
@@ -205,10 +218,13 @@ function handlerSubmitFormAvatar({link}) {
         ...userInfo.getUserInfo(),
         link,
       });
+      popupAvatar.close();
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       popupAvatar.endLoading();
-      popupAvatar.close();
     })
 }
 

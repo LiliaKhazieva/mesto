@@ -1,5 +1,5 @@
 import Popup from './Popup';
-import { popupForm, popupInput, popupSubmit } from './constants';
+import { popupForm, popupInput, popupSubmit } from '../utils/constants';
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, submitHandler, openHandler) {
